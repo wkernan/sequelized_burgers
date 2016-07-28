@@ -1,0 +1,64 @@
+<header class="text-center">
+  <nav>
+    <h1><strong>Burger Time!</strong></h1>
+  </nav>
+</header>
+<main>
+<div class="container text-center">
+  <div class="burger-container">
+    <div class="row main">
+      <div class="col-md-6 col-xs-12">
+        <h1>Freshly Made Burgers</h1>
+          {{#each burgers}}
+            {{#unless this.devoured}}
+            <div class="row burgers">
+              <div class="col-xs-9 burger">
+                <h2>{{this.burger_name}}</h2>
+              </div>
+              <div class="col-xs-3">
+                <form action="burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
+                  <button class="btn btn-warning" type="submit" style="float:right"><i class="fa fa-cutlery" aria-hidden="true"></i>DEVOUR!</button>
+                </form>
+              </div>
+            </div>
+            <hr class="break">
+            {{/unless}}
+          {{/each}}
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <h1>Devoured Burgers</h1>
+          {{#each burgers}}
+            {{#if this.devoured}}
+            <div class="row burgers">
+              <div class="col-xs-6 burger">
+                <h2>{{this.burger_name}}</h2>
+              </div>
+              <div class="col-xs-6">
+                <form action="burgers/update/reorder/{{this.id}}?_method=PUT" method="POST">
+                  <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-repeat" aria-hidden="true"></i>REORDER!</button>
+                </form>
+                <form action="burgers/delete/{{this.id}}?_method=DELETE" method="POST">
+                  <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash" aria-hidden="true"></i>DELETE!</button>
+                </form>
+              </div>
+            </div>
+            <hr class="break">
+            {{/if}}
+          {{/each}}
+      </div>
+    </div>
+    <div class="row bottom">
+      <h1>Add a Burger</h1>
+      <form class="form-inline" action="burgers/create" method="POST">
+        <div class="form-group">
+          <label for="ca"><h4>Burger Name:</h4></label>
+          <input type="text" id="ca" name="name" class="form-control" required>
+        </div>
+        <button class="btn btn-success" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Burger</button>
+      </form>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+</footer>

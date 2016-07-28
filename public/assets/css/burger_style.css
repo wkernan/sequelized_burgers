@@ -1,0 +1,84 @@
+body {
+	background-image: url(http://www.matteothun.com/files/immaginiMediaGallery/2014/5/06_Burgerlich_K_Gastraum_1.jpg);
+	color: #FFF;
+	font-family: 'Oswald', sans-serif;
+}
+
+nav {
+	height: 90px;
+	background-color: rgba(0, 0, 0, 0.75);
+	margin-bottom: 40px;
+}
+
+nav h1 {
+	font-size: 70px;
+	margin-top: 0;
+	color: #FFF;
+}
+
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.burger-container {
+	background-color: rgba(117, 181, 0, 0.75);
+}
+
+.bottom {
+	padding-bottom: 30px;
+	border-top: 1px solid #e5e5e5;
+}
+
+ul {
+	list-style: none;
+}
+
+.main {
+	height: 400px;
+	overflow: auto;
+}
+
+.main hr:last-child {
+	display:none;
+}
+
+.burgers h2 {
+	font-family: 'Amatic SC', cursive;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.burger {
+	display: -webkit-inline-box;
+}
+
+.btn {
+	margin: 5px;
+}
+
+.fa {
+	margin: 0 5px 0 0;
+}
+
+.break {
+	width: 75%;
+	border-top: 1px solid rgba(0, 0, 0, 0.75);
+}
+
+hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.btn-warning {
+	margin: 20px;
+}
+
+@media screen and (max-width: 768px) {
+	.form-group {
+	  width: 50%;
+	  margin-left: auto;
+	  margin-right: auto
+	}
+}

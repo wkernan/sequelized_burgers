@@ -5,46 +5,7 @@
 </header>
 <main>
 <div class="container text-center">
-{{#if message.failure}}
-  <div class="alert alert-danger alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>{{message.failure}}</strong>
-  </div>
-{{/if}}
-{{#if message.success}}
-  <div class="alert alert-success alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>{{message.success}}</strong>
-  </div>
-{{/if}}
-{{#if message.delete}}
-  <div class="alert alert-danger alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>{{message.delete}}</strong>
-  </div>
-{{/if}}
-{{#if message.devour}}
-  <div class="alert alert-success alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>{{message.devour}}</strong>
-  </div>
-{{/if}}
-{{#if message.reorder}}
-  <div class="alert alert-success alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>{{message.reorder}}</strong>
-  </div>
-{{/if}}
+{{> alerts}}
   <div class="burger-container">
     <div class="row main">
       <div class="col-md-6 col-xs-12">

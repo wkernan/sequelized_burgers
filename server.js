@@ -13,11 +13,16 @@ app.use(bodyParser.urlencoded({
 }));
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
-app.use(session({ secret: '123' }));
+app.use(session({ 
+	resave: false,
+	saveUninitialized: true,
+	secret: '123' 
+}));
 app.use(flash());
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({
-	defaultLayout: 'main'
+	defaultLayout: 'main',
+	partialsPath: 'views/partials'
 }));
 app.set('view engine', 'handlebars');
 

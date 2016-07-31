@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var session = require('express-session');
+var flash = require('req-flash');
 
 var app = express();
 
@@ -11,6 +13,8 @@ app.use(bodyParser.urlencoded({
 }));
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
+app.use(session({ secret: '123' }));
+app.use(flash());
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({
 	defaultLayout: 'main'

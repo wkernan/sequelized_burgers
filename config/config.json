@@ -14,10 +14,6 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "process.env.db_user",
-    "password": "process.env.db_pw",
-    "database": "process.env.db",
-    "host": "process.env.db_host",
-    "dialect": "mysql"
+  "use_env_variable": "DATABASE_URL"
   }
 }

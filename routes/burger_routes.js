@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models');
+var sequelConnect = db.sequelize;
 
 router.get('/', function (req, res) {
 	res.redirect('/burgers');
@@ -10,6 +11,11 @@ router.get('/burgers', function (req, res) {
 	db.Burger.findAll({
 
 	}).then(function (data) {
+		data.forEach(function(burg) {
+			db.Ingredient.find({where: {BurgerId: burg.id}}).then(function(ing) {
+				burg.ing = ing.name;
+			})
+		})
 		res.render('index', {burgers: data, message: req.flash()});
 	});
 });
@@ -17,11 +23,15 @@ router.get('/burgers', function (req, res) {
 router.post('/burgers/create', function(req, res) {
 	db.Burger.findOne({where: {burger_name: req.body.name}}).then(function(burger) {
 		if(!burger) {
-			db.Burger.create({ burger_name: req.body.name }).then(function() {
-				req.flash('success', 'Your ' + req.body.name + ' is ready to be devoured!');
+			var aBurger;
+			db.Burger.create({ burger_name: req.body.name, Ingredient: { name: req.body.ing_name } }, { include: [db.Ingredient]})
+			.then(function(burger) {
+				aBurger = burger;
+			})
+			.then(function() {
+				req.flash('success', 'Your ' + req.body.name + ' with ' + req.body.ing_name + ' is ready to be devoured!');
 				res.redirect('/burgers');
-			});
-
+			});				
 		} else {
 			req.flash('failure', 'That burger has already been made');
 			res.redirect('/burgers');

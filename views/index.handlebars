@@ -14,7 +14,7 @@
             {{#unless this.devoured}}
             <div class="row burgers">
               <div class="col-xs-9 burger">
-                <h2>{{this.burger_name}}</h2>
+                <h2>{{this.burger_name}} with {{this.ing}}</h2>
               </div>
               <div class="col-xs-3">
                 <form action="burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
@@ -32,7 +32,7 @@
             {{#if this.devoured}}
             <div class="row burgers">
               <div class="col-xs-6 burger">
-                <h2>{{this.burger_name}}</h2>
+                <h2>{{this.burger_name}} with {{this.ing}}</h2>
               </div>
               <div class="col-xs-6">
                 <form action="burgers/update/reorder/{{this.id}}?_method=PUT" method="POST">
@@ -55,6 +55,15 @@
           <label for="ca"><h4>Burger Name:</h4></label>
           <input type="text" id="ca" name="name" class="form-control" required>
         </div>
+        <div class="form-group">
+          <label for="ing"><h4>Add Ingredient</h4></label>
+          <select id="ingredient1" name="ing_name" class="form-control">
+            <option>cheese</option>
+            <option>lettuce</option>
+            <option>tomato</option>
+            <option>onion</option>
+            <option>pickle</option>
+          </select>
         <button class="btn btn-success" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Burger</button>
       </form>
     </div>

@@ -8,11 +8,11 @@ router.get('/', function (req, res) {
 });
 
 router.get('/burgers', function (req, res) {
-	db.Burger.findAll({
+	db.burger.findAll({
 
 	}).then(function (data) {
 		data.forEach(function(burg) {
-			db.Ingredient.find({where: {BurgerId: burg.id}}).then(function(ing) {
+			db.ingredient.find({where: {burgerId: burg.id}}).then(function(ing) {
 				burg.ing = ing.name;
 			})
 		})
@@ -21,10 +21,10 @@ router.get('/burgers', function (req, res) {
 });
 
 router.post('/burgers/create', function(req, res) {
-	db.Burger.findOne({where: {burger_name: req.body.name}}).then(function(burger) {
+	db.burger.findOne({where: {burger_name: req.body.name}}).then(function(burger) {
 		if(!burger) {
 			var aBurger;
-			db.Burger.create({ burger_name: req.body.name, Ingredient: { name: req.body.ing_name } }, { include: [db.Ingredient]})
+			db.burger.create({ burger_name: req.body.name, ingredient: { name: req.body.ing_name } }, { include: [db.ingredient]})
 			.then(function(burger) {
 				aBurger = burger;
 			})
@@ -40,7 +40,7 @@ router.post('/burgers/create', function(req, res) {
 });
 
 router.put('/burgers/update/devour/:id', function(req, res) {
-	db.Burger.update(
+	db.burger.update(
 		{ 
 			devoured: true
 		}, 
@@ -55,7 +55,7 @@ router.put('/burgers/update/devour/:id', function(req, res) {
 });
 
 router.delete('/burgers/delete/:id', function(req, res) {
-	db.Burger.destroy(
+	db.burger.destroy(
 		{
 			where: {
 				id: req.params.id
@@ -67,7 +67,7 @@ router.delete('/burgers/delete/:id', function(req, res) {
 });
 
 router.put('/burgers/update/reorder/:id', function(req, res) {
-	db.Burger.update(
+	db.burger.update(
 		{
 			devoured: false
 		},

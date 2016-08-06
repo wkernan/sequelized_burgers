@@ -1,14 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Ingredient = sequelize.define('Ingredient', {
+  var ingredient = sequelize.define('ingredient', {
     name: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
-        Ingredient.belongsTo(models.Burger);
+        ingredient.belongsTo(models.burger);
         // associations can be defined here
       }
     }
   });
-  return Ingredient;
+  return ingredient;
 };

@@ -11,12 +11,17 @@ router.get('/burgers', function (req, res) {
 	db.burger.findAll({
 
 	}).then(function (data) {
+		var queries = [];
 		data.forEach(function(burg) {
-			db.ingredient.find({where: {burgerId: burg.id}}).then(function(ing) {
-				burg.ing = ing.name;
-			})
+			queries.push(db.ingredient.find({where: {burgerId: burg.id}}));
 		})
-		res.render('index', {burgers: data, message: req.flash()});
+		Promise.all(queries).then(function(results) {
+				for(var i = 0; i < results.length; i++){
+					data[i].ing = results[i].name;
+					console.log("my burger:",data[i])
+				}
+				res.render('index', {burgers: data, message: req.flash()});
+		})
 	});
 });
 

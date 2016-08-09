@@ -20,6 +20,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
+      },
+      burgerId: {
+        type: Sequelize.INTEGER,
+        model: 'burger',
+        key: 'id'
       }
     });
   },
